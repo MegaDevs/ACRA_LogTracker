@@ -1,8 +1,30 @@
 This README is just a draft. We will update it with better explanations ASAP.
 
-What is ACRA-LogTracker?
+|-------------------------------------------------------------------------------
+| What is ACRA-LogTracker?
+|-------------------------------------------------------------------------------
 
 A Java desktop application which provides a better visualization for ACRA-generated spreadsheets. ACRA, for you to know, allows your Android application to send Crash Reports in a Google Docs spreadsheet. Please note that this is an independent project, not affiliated with ACRA in any mean.
+
+
+
+|-------------------------------------------------------------------------------
+| !! PLEASE NOTE !!
+|-------------------------------------------------------------------------------
+
+This application is still in development. Some features are still missing, some other are about to be completed. Especially, the filtering part has only three filters available:
+
+[*] board - equals - anyvalue
+[*] app_version - equals - anyvalue
+[*] package_name - equals - anyvalue
+
+We will implement *ALL* the possible filters, 
+
+
+
+|-------------------------------------------------------------------------------
+| Contact us
+|-------------------------------------------------------------------------------
 
 MegaDevs
 http://megadevs.com

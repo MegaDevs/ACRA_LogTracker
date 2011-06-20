@@ -4,7 +4,10 @@ MANDATORY
 - check for errors on spreadsheet selection (WARNING!! may crash if first lines of the spreadsheet are empty)
 - show application log (almost done)
 - navigate log list with keyboard keys
+- add other filters
 
 PROBABLE
 
 - get rid of Swing, rework UI with Qt
+
+
