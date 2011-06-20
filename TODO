@@ -1,0 +1,10 @@
+MANDATORY
+
+- get rid of ColNameAssoc.java
+- check for errors on spreadsheet selection (WARNING!! may crash if first lines of the spreadsheet are empty)
+- show application log (almost done)
+- navigate log list with keyboard keys
+
+PROBABLE
+
+- get rid of Swing, rework UI with Qt
