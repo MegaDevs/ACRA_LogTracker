@@ -114,18 +114,90 @@ public class LogTracker {
 			String value = f.get(i).get(2);	
 
 			switch (field) {
-			case (ColNamesAssoc.BOARD) : {
-				BoardFilterCriteria filter = new BoardFilterCriteria(value);
-				filters.addFilterCriteria(filter);
-			}; break;
-			case (ColNamesAssoc.PACKAGE_NAME) : {
-				PackageNameFilterCriteria filter = new PackageNameFilterCriteria(value);
-				filters.addFilterCriteria(filter);
-			}; break;
-			case (ColNamesAssoc.APP_VERSION) : {
-				AppVersionFilterCriteria filter = new AppVersionFilterCriteria(value, operation);
-				filters.addFilterCriteria(filter);
-			} break;
+				case (ColNamesAssoc.APP_VERSION) : {
+					AppVersionFilterCriteria filter = new AppVersionFilterCriteria(value, operation);
+					filters.addFilterCriteria(filter);
+				} break;
+				case (ColNamesAssoc.BOARD) : {
+					BoardFilterCriteria filter = new BoardFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.BRAND) : {
+					BrandFilterCriteria filter = new BrandFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.CRASH_CONFIGURATION) : {
+					CrashConfigurationFilterCriteria filter = new CrashConfigurationFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.CUSTOM) : {
+					CustomFilterCriteria filter = new CustomFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.DEVICE) : {
+					DeviceFilterCriteria filter = new DeviceFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.DISPLAY) : {
+					DisplayFilterCriteria filter = new DisplayFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.FILE_PATH) : {
+					FilePathFilterCriteria filter = new FilePathFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.FINGERPRINT) : {
+					FingerprintFilterCriteria filter = new FingerprintFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.HOST) : {
+					HostFilterCriteria filter = new HostFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.ID) : {
+					IDFilterCriteria filter = new IDFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.INITIAL_CONFIGURATION) : {
+					InitialConfigurationFilterCriteria filter = new InitialConfigurationFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.MODEL) : {
+					ModelFilterCriteria filter = new ModelFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.PACKAGE_NAME) : {
+					PackageNameFilterCriteria filter = new PackageNameFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.PHONE_MODEL) : {
+					PhoneModelFilterCriteria filter = new PhoneModelFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.PRODUCT) : {
+					ProductFilterCriteria filter = new ProductFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.STACK_TRACE) : {
+					StacktraceFilterCriteria filter = new StacktraceFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.TAGS) : {
+					TagsFilterCriteria filter = new TagsFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.TYPE) : {
+					TypeFilterCriteria filter = new TypeFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.USER) : {
+					UserFilterCriteria filter = new UserFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
+				case (ColNamesAssoc.USER_COMMENTS) : {
+					UserCommentsFilterCriteria filter = new UserCommentsFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				}; break;
 			}
 		}
 
