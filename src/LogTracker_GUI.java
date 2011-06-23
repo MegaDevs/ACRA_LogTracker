@@ -57,7 +57,6 @@ public class LogTracker_GUI extends JFrame {
 	private JTextPane appLogTextPane;
 	private JTextPane sysLogTextPane;
 
-	private JLabel loginLabel;
 	private JLabel userLabel;
 	private JLabel passLabel;
 	private JLabel spreadsheetLabel;
@@ -145,21 +144,6 @@ public class LogTracker_GUI extends JFrame {
 		logList = new JList(logListModel);
 		logList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		logList.addListSelectionListener(new LogListSelectionListener());
-		logList.addKeyListener(new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-			}
-
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-			}
-		});
 
 		logListScrollPane = new JScrollPane(logList);
 		logListScrollPane.setBorder(BorderFactory.createTitledBorder("Log list"));
@@ -262,60 +246,58 @@ public class LogTracker_GUI extends JFrame {
 	class LogListSelectionListener implements ListSelectionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent evt) {
-			if (evt.getValueIsAdjusting() != false) {
-				int sel = ((JList) evt.getSource()).getSelectedIndex();
+			int sel = ((JList) evt.getSource()).getSelectedIndex();
 
-				int index = -1;
-				Map<String, String> selectedLog = null;
-				if(clientRef.isFilteringOn()) {
-					index = clientRef.getFilteredLogsCount()-sel-1;
-					selectedLog = clientRef.getFilteredLogsValues().get(Integer.valueOf(index));
-				}
-				else {
-					index = clientRef.getLogsCount()-sel-1;
-					selectedLog = clientRef.getLogValues().get(Integer.valueOf(index));
-				}
-
-				try {
-					appLogTextPane.getStyledDocument().remove(0, appLogTextPane.getStyledDocument().getLength());
-				} catch (BadLocationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				writeAppLog("K", "LOG_ID: ");
-				writeAppLog("O", String.valueOf(index+1)+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.DATE_TIME)+": ");
-				writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.DATE_TIME))+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.APP_VERSION)+": ");
-				writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.APP_VERSION))+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.PHONE_MODEL)+": ");
-				writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.PHONE_MODEL))+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.ANDROID_VERSION)+": ");
-				writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.ANDROID_VERSION))+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.BOARD)+": ");
-				writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.BOARD))+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.PACKAGE_NAME)+": ");
-				writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.PACKAGE_NAME))+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.FINGERPRINT)+": ");
-				writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.FINGERPRINT))+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.STACK_TRACE)+": ");
-				writeAppLog("S",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.STACK_TRACE))+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.USER_COMMENTS)+": ");
-				writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.USER_COMMENTS))+"\n");
-
-				writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.USER_CRASH_DATE)+": ");
-				writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.USER_CRASH_DATE))+"\n");
+			int index = -1;
+			Map<String, String> selectedLog = null;
+			if(clientRef.isFilteringOn()) {
+				index = clientRef.getFilteredLogsCount()-sel-1;
+				selectedLog = clientRef.getFilteredLogsValues().get(Integer.valueOf(index));
 			}
+			else {
+				index = clientRef.getLogsCount()-sel-1;
+				selectedLog = clientRef.getLogValues().get(Integer.valueOf(index));
+			}
+
+			try {
+				appLogTextPane.getStyledDocument().remove(0, appLogTextPane.getStyledDocument().getLength());
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			writeAppLog("K", "LOG_ID: ");
+			writeAppLog("O", String.valueOf(index+1)+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.DATE_TIME)+": ");
+			writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.DATE_TIME))+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.APP_VERSION)+": ");
+			writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.APP_VERSION))+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.PHONE_MODEL)+": ");
+			writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.PHONE_MODEL))+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.ANDROID_VERSION)+": ");
+			writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.ANDROID_VERSION))+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.BOARD)+": ");
+			writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.BOARD))+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.PACKAGE_NAME)+": ");
+			writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.PACKAGE_NAME))+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.FINGERPRINT)+": ");
+			writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.FINGERPRINT))+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.STACK_TRACE)+": ");
+			writeAppLog("S",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.STACK_TRACE))+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.USER_COMMENTS)+": ");
+			writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.USER_COMMENTS))+"\n");
+
+			writeAppLog("K",clientRef.getTagsList().get(ColNamesAssoc.USER_CRASH_DATE)+": ");
+			writeAppLog("O",selectedLog.get(clientRef.getTagsList().get(ColNamesAssoc.USER_CRASH_DATE))+"\n");
 		}
 	}
 
@@ -681,7 +663,7 @@ public class LogTracker_GUI extends JFrame {
 		for (int i=0; i<logsCount; i++) {
 			Map<String,String> current = logs.get(Integer.valueOf(i));
 			Vector<String> tagList = clientRef.getTagsList();
-			listData[logsCount-i-1] = current.get(tagList.get(ColNamesAssoc.DATE_TIME));
+			listData[logsCount-i-1] = current.get(tagList.get(ColNamesAssoc.USER_CRASH_DATE));
 		}
 
 		logListModel = new DefaultListModel();
