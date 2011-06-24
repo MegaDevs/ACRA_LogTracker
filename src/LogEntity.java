@@ -1,5 +1,11 @@
 import java.util.Vector;
 
+/**
+ * This class represents a log entry in the collection. A log features
+ * an unique ID and a list of values.
+ * @author dextor
+ *
+ */
 public class LogEntity {
 	private int ID;
 	private Vector<String> logEntries;
@@ -10,7 +16,7 @@ public class LogEntity {
 	}
 
 	/**
-	 * @return the iD
+	 * @return the ID
 	 */
 	public int getID() {
 		return ID;

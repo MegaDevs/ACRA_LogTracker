@@ -1,4 +1,3 @@
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -166,20 +165,12 @@ class CustomFilterCriteria implements FilterCriteria {
  *
  */
 class DateTimeFilterCriteria implements FilterCriteria {
-	private Date date;
-	
-	public DateTimeFilterCriteria(String d) {
-		int spaceIndex = d.indexOf(' ');
-		String dateString = d.substring(0, spaceIndex);
-		String timeString = d.substring(spaceIndex);
-		
-		//TODO finire
-	}
+	public DateTimeFilterCriteria(String d) {}
 	
 	@Override
 	public boolean passes(Object o, Vector<String> tags) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 }
@@ -228,7 +219,7 @@ class DisplayFilterCriteria implements FilterCriteria {
 	@Override
 	public boolean passes(Object o, Vector<String> tags) {
 		Map<String,String> obj = (Map<String, String>) o;
-		String value = obj.get(tags.get(ColNamesAssoc.USER_COMMENTS));
+		String value = obj.get(tags.get(ColNamesAssoc.DISPLAY));
 		if(value == null)
 			return false;
 		else
@@ -607,6 +598,33 @@ class UserCommentsFilterCriteria implements FilterCriteria {
 
 
 /**
+ * This class filters the objects collection based on the 'user comments' field.
+ * @author dextor
+ *
+ */
+class UserCrashDateFilterCriteria implements FilterCriteria {
+	private String userCrashDate;
+
+	public UserCrashDateFilterCriteria(String b) {
+		userCrashDate = b;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean passes(Object o, Vector<String> tags) {
+		Map<String,String> obj = (Map<String, String>) o;
+		String value = obj.get(tags.get(ColNamesAssoc.USER_CRASH_DATE));
+		if(value == null)
+			return false;
+		else
+			return (value.equals(userCrashDate));
+	}
+
+}
+
+
+
+/**
  * Main filtering class. In order for a LogTracker object to filter, a LogEntityFilter instance
  * must be created. Then, any number of FilterCriteria objects may be added to that instance. Finally,
  * by calling the filter() method, all of the added FilterCriteria will be applied to the original
@@ -657,6 +675,7 @@ public class LogEntityFilter {
 			}
 		}
 
+		/// updating the LogTracker with the filtered collection of logs
 		clientRef.setFilteredLogsValues(newCollection);
 		clientRef.setFilteredLogsCount(newCollection.size());
 	}

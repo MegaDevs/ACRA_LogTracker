@@ -27,4 +27,14 @@ public class ColNamesAssoc {
 	public static final int DISPLAY = 25;
 	public static final int USER_COMMENTS = 26;
 	public static final int USER_CRASH_DATE = 27; //N
+
+	public static final int[] NOT_FILTERABLE = new int[] {
+		BUILD_DISPLAY,
+		CUSTOM,
+		STACK_TRACE,
+		INITIAL_CONFIGURATION,
+		CRASH_CONFIGURATION,
+		DISPLAY,
+		USER_COMMENTS
+	};
 }

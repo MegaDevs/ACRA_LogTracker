@@ -20,7 +20,12 @@ import com.google.gdata.util.AuthenticationException;
 import com.google.gdata.util.ServiceException;
 
 public class LogTracker {
-
+	
+	/**
+	 * This object represents a lock between the Business Logic and the Graphics.
+	 * It is used in order to perform updates in the UI just after the data has been updated. 
+	 * TODO removable?
+	 */
 	public Object lock;
 
 	private LogTracker_GUI guiRef;
@@ -62,8 +67,13 @@ public class LogTracker {
 		guiRef = new LogTracker_GUI(this);
 	}
 
+	/**
+	 * The login method, which uses Google authentication APIs in order to perform the operation.
+	 * @param usr the username parameter
+	 * @param pwd the password paramenter
+	 * @throws AuthenticationException
+	 */
 	public void login(String usr, String pwd) throws AuthenticationException {
-
 		client = new SpreadsheetService("acra-logtracker-megadevs");
 		client.setUserCredentials(usr, pwd, ClientLoginAccountType.GOOGLE);
 		guiRef.writeSysLog("E","Error in logging in with your Google credentials: please retry!");
@@ -105,13 +115,20 @@ public class LogTracker {
 		}
 	}
 
-	public void filter(Vector<Vector<String>> f) {
+	/**
+	 * The 'filter' method handles the filtering operations from the LogTracker instance. It receives
+	 * a collection of filters and for each one of them it creates the corrisponding FilterCriteria
+	 * implementation object. When all FilterCriteria objects have been processed, they are applied to the
+	 * whole collection of logs.
+	 * @param filterParams a collection of "raw" filters, which must be processed and then applied
+	 */
+	public void filter(Vector<Vector<String>> filterParams) {
 		filters = new LogEntityFilter(this);		
 
-		for (int i=0; i<f.size(); i++) {
-			int field = Integer.valueOf(f.get(i).get(0));
-			int operation = Integer.valueOf(f.get(i).get(1));
-			String value = f.get(i).get(2);	
+		for (int i=0; i<filterParams.size(); i++) {
+			int field = Integer.valueOf(filterParams.get(i).get(0));
+			int operation = Integer.valueOf(filterParams.get(i).get(1));
+			String value = filterParams.get(i).get(2);	
 
 			switch (field) {
 				case (ColNamesAssoc.APP_VERSION) : {
@@ -198,6 +215,10 @@ public class LogTracker {
 					UserCommentsFilterCriteria filter = new UserCommentsFilterCriteria(value);
 					filters.addFilterCriteria(filter);
 				}; break;
+				case (ColNamesAssoc.USER_CRASH_DATE) : {
+					UserCrashDateFilterCriteria filter = new UserCrashDateFilterCriteria(value);
+					filters.addFilterCriteria(filter);
+				} break;
 			}
 		}
 
